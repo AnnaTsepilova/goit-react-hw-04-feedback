@@ -11,8 +11,13 @@ export default function App() {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
-  const total = good + neutral + bad;
-  const positivePercentage = Math.round((good * 100) / total);
+  const totalFeedback = () => {
+    return good + neutral + bad;
+  };
+  const positivePercentage = () => {
+    const total = totalFeedback();
+    return total ? Math.round((good * 100) / total) : 0;
+  };
 
   const onLeaveFeedback = event => {
     switch (event) {
@@ -45,15 +50,15 @@ export default function App() {
       </Section>
       <StatisticsWrapper>
         <Section title="Statistics">
-          {total === 0 ? (
+          {totalFeedback() === 0 ? (
             <Notification message="There is no feedback" />
           ) : (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={total}
-              percentage={positivePercentage}
+              total={totalFeedback()}
+              percentage={positivePercentage()}
             />
           )}
         </Section>
