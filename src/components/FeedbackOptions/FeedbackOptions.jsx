@@ -13,9 +13,10 @@ const components = {
 };
 
 export default function FeedbackOptions({ options, onLeaveFeedback }) {
+  const optionsList = Object.keys(options);
   return (
     <FeedbackOptionsWrapper>
-      {options.map((option, key) => {
+      {optionsList.map((option, key) => {
         let Button = components[option];
         return (
           <Button
@@ -34,6 +35,6 @@ export default function FeedbackOptions({ options, onLeaveFeedback }) {
 }
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.object.isRequired,
   onLeaveFeedback: PropTypes.func.isRequired,
 };
