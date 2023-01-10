@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { CounterContainer, Title, StatisticsWrapper } from './App.styled';
 
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
@@ -14,6 +15,7 @@ export default function App() {
   const totalFeedback = () => {
     return good + neutral + bad;
   };
+
   const positivePercentage = () => {
     const total = totalFeedback();
     return total ? Math.round((good * 100) / total) : 0;
@@ -66,3 +68,12 @@ export default function App() {
     </CounterContainer>
   );
 }
+
+App.propTypes = {
+  good: PropTypes.number,
+  neutral: PropTypes.number,
+  bad: PropTypes.number,
+  totalFeedback: PropTypes.func,
+  positivePercentage: PropTypes.func,
+  onLeaveFeedback: PropTypes.func,
+};
